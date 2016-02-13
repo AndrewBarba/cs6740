@@ -7,11 +7,11 @@ ICMP redirects are used by routers to tell systems to update their routing table
 
 ## Evidence
 
-In `./screens` you can see the attacker using netwox to send an IMCP redirect packet in an attempt to take redirect from `192.168.56.101` to an invalid IP `192.168.56.133`. You can also see the packets being sent in the Wireshark screenshots.
+In `./task_2/screens` you can see the attacker using netwox to send an IMCP redirect packet in an attempt to take redirect from `192.168.56.101` to an invalid IP `192.168.56.133`. You can also see the packets being sent in the Wireshark screenshots.
 
 ## Code
 
-This attack was executed using a single command which can be seen in `./code/icmp_redirect.sh`.
+This attack was executed using a single command which can be seen in `./task_2/code/icmp_redirect.sh`.
 
 ## Notes
 

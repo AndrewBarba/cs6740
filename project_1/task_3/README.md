@@ -23,4 +23,4 @@ send(IP(dst="192.168.56.101")/TCP(flags="S", dport=8081), count=1000000)
 
 ## Notes
 
-Screenshots of all the failed attempts can be seen in `./screens`.
+Screenshots of all the failed attempts can be seen in `./task_3/screens`.

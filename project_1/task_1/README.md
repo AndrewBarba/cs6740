@@ -7,12 +7,12 @@ This attack attempts to inject an entry in the ARP cache of a victim. This is us
 
 ## Evidence
 
-All evidence for this attack can be in the `./screens` folder.
+All evidence for this attack can be seen in the `./task_1/screens` folder.
 
 ## Code
 
-This attack was executed using a single command which can be seen in `./code/poison.sh`.
+This attack was executed using a single command which can be seen in `./task_1/code/poison.sh`.
 
 ## Notes
 
-When I first tried executing the `netwox` command I was getting an error saying the victim IP was `unreached`. Thanks to [Aboobacker Rizwan](https://piazza.com/class/ija4wa3pya337l?cid=66), I realized it was necessary to specify the device in the command because `netwox` was using the NAT interface by default. 
+When I first tried executing the `netwox` command I was getting an error saying the victim IP was `unreached`. Thanks to [Aboobacker Rizwan](https://piazza.com/class/ija4wa3pya337l?cid=66), I realized it was necessary to specify the device in the command because `netwox` was using the NAT interface by default.
