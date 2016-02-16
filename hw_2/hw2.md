@@ -17,6 +17,18 @@ This protocol is vulnerable to a reflection attack. When A tries to authenticate
 
 #### Problem 3
 
+###### 1.
+
+SYN flooding is an attack where an attacker floods a target with SYN packets (the first packet in the TCP 3 step handshake) in an effort to consume resources on the target by opening a lot of half-open connections. As the targets connection queue fills up, it will stop responding to legitimate traffic.
+
+###### 2.
+
+Cryptography can help prevent SYN flood attacks, specifically in the **syncookie** implementation. A syncookie is a small has of the client's IP, port, and other unique info which is added to the initial SYN-ACK sent from the target. Only when the client responds with an appropriate ACK will the server allocate resources for the connection.
+
+###### 3.
+
+Building on the answer above, a syncookie allows the target to discard any information related to the initial SYN packet (and not allocate resources for it) because it can reconstruct that information based on the initial SYN-ACK packet when the client appropriately responds with a final ACK packet.
+
 #### Problem 4
 
 #### Problem 5
