@@ -58,3 +58,11 @@ IPSec prevents replay attacks with an always incrementing sequence number for ea
 SSL prevents replay attacks by computing a MAC from the packets sequence number, payload, and length. Any attempt to replay packets would generate a new MAC and alter the rest of the flow.
 
 #### Problem 5
+
+###### 1.
+
+Every DNS request contains a unique identifier to link a request and a response. If an attacker get access to a unique identifier for a specific request, then it can create a packet with the same ID as the request insert any IP address the attacker wants into the response. This will store that attackers IP with the requested domain.
+
+###### 2.
+
+DNSSec uses digitally signed DNS recored to validate the origin of a response. Even if an attacker could get access to the ID, they would not be able to sign the packet and convince the client it was the intended target.
