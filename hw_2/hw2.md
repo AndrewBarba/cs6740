@@ -31,4 +31,30 @@ Building on the answer above, a syncookie allows the target to discard any infor
 
 #### Problem 4
 
+###### 1.
+
+IPSec provides 3 main forms of security:
+
+1. Authentication headers - data integrity and origin authentication
+2. Encapsulating security payloads - prevent replay attacks, data integrity
+3. Security associations - determines best set of algorithms/keys to encrypt a data flow of packets
+
+###### 2.
+
+**Tunnel Mode**: The entire packet is encrypted and encapsulated into a new IP packet. Used widely in VPN's.
+
+**Transport Mode**: Only the packet payload is encrypted. Less resource intensive than Tunnel Mode, used for traversing NAT's.
+
+###### 3.
+
+The SPI index alone is not enough to uniquely identify an SA for that packet because it only hold local significance much like a port number. A destination in the packet header plus the SPI index are both needed to uniquely identify an SA.
+
+###### 4.
+
+IPSec prevents replay attacks with an always incrementing sequence number for each packet. A sequence number can never be reused because a new SA would need to be agreed upon.
+
+###### 5.
+
+SSL prevents replay attacks by computing a MAC from the packets sequence number, payload, and length. Any attempt to replay packets would generate a new MAC and alter the rest of the flow.
+
 #### Problem 5
