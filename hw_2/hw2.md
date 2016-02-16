@@ -11,6 +11,10 @@ This protocol is **not** vulnerable to a reflection attack because it forces the
 
 #### Problem 2
 
+The goal of this protocol is to establish a secure connection over a public channel, where neither the initiator nor the target need to know/share a common, private key.
+
+This protocol is vulnerable to a reflection attack. When A tries to authenticate with B, an attacker E sends a response to A that makes A think it is B. A will finish the protocol and now E has an authenticated connection with A.
+
 #### Problem 3
 
 #### Problem 4
