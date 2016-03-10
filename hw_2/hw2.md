@@ -23,7 +23,7 @@ SYN flooding is an attack where an attacker floods a target with SYN packets (th
 
 ###### 2.
 
-Cryptography can help prevent SYN flood attacks, specifically in the **syncookie** implementation. A syncookie is a small has of the client's IP, port, and other unique info which is added to the initial SYN-ACK sent from the target. Only when the client responds with an appropriate ACK will the server allocate resources for the connection.
+Cryptography can help prevent SYN flood attacks, specifically in the **syncookie** implementation. A syncookie is a small hash of the client's IP, port, and other unique info which is added to the initial SYN-ACK sent from the target. Only when the client responds with an appropriate ACK will the server allocate resources for the connection.
 
 ###### 3.
 
