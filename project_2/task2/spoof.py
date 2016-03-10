@@ -11,6 +11,5 @@ sniff(
         send(
             IP(dst=p[IP].src, src=p[IP].dst)\
             /UDP(dport=p[UDP].sport, sport=p[UDP].dport)\
-            /DNS(id=p[DNS].id, an=DNSRR(rrname=p[DNSQR].qname, rdata=p[IP].dst))\
-            /DNSRR(rrname="trailers.apple.com", rdata=p[IP].dst)
+            /DNS(id=p[DNS].id, an=DNSRR(rrname=p[DNSQR].qname, rdata="1.2.3.4"))
         ))
