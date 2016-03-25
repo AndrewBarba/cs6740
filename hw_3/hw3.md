@@ -5,6 +5,12 @@ Andrew Barba [abarba@ccs.neu.edu](abarba@ccs.neu.edu)
 
 #### Problem 1
 
+###### Describe the fundamental security problems in BPG
+
+
+
+###### Compare sBGP and RPKI
+
 #### Problem 2
 
 ###### What is SOP?
@@ -53,4 +59,41 @@ The reason the attack works is because there are reserved characters that make u
 
 #### Problem 4
 
+```
+<html>
+  <body>
+    <?php
+      print "Not found: " . urldecode($_SERVER["REQUEST_URI"]);
+    ?>
+  </body>
+</html>
+```
+
+###### Does it have a security vulnerability?
+
+This code is highly vulnerable to a denial of service attack.
+
+The server is responding with whatever the request included in the URI, meaning the protocol, port, hostname, path and any query parameters. The protocol will be whatever this server supports so let's assume http or https, the port will be whatever ports this server supports, let's assume 80 or 443, and the hostname will be whatever the server is under, let's assume www.example.com. Where this code is dangerous is in the path and query parameters. Those are supplied by the user and may contain malicious intent, specifically a very large amount of data. Because this server is going to return whatever I send, I can essentially double the network bandwidth with every request I send. If I send a 1MB request, this server is going to consume 1MB in and send 1MB out, producing a total 2MB of processing. If I can send a lot of requests simultaneously and with a large amount of data in each request, then I can easily fill up the resources of this server so it cannot respond to real requests.
+
+######  Propose a solution to defend against the attack
+
+To prevent this attack the server needs to stop reading in data from a request when it hits a certain threshold. For `GET` requests for example, there is really no reason to read a request that is longer than say 8KB (or whatever you determine by your applications needs). This may be possible at the application level in PHP, but it would be even better to stop this at an earlier stage in the flow, perhaps at the Apache or Nginx level so the malicious code never even reaches your application logic.
+
 #### Problem 5
+
+```
+<html>
+  <body>
+    <h1>Hello</h1>
+    <img src="http://evil.com/MyAccount?Email=anaddress@asite.com" width="1" height="1" />
+  </body>
+</html>
+```
+
+######  How can the code above can be used for a CSRF attack?
+
+This code is exploiting the fact that a browser will issue a `GET` request to any URI in the `src` attribute of an image tag. The page will look normal to the user, because this is simply a 1px x 1px transparent image, but the attacker can sneak data into that request, perhaps `document.cookie`, and store it on it's own servers. It could also attempt to make requests on your behalf, perhaps by making the image src `http://www.facebook.com/logout`, which could alter the state of accounts you own on other websites. Attempting to logout a user might not seem malicious, but what if they can login you into another account, or even make requests on behalf of that account.
+
+######  Propose a solution to defend against the attack
+
+A common solution to this particular attack is to limit any destructive or modifying action to an HTTP method other than `GET`. Specifically `POST` or `PUT` are common methods that can only be sent by some form of explicit user interaction or a Javascript XMLHttpRequest. Of course this is not enough, as you can't assume the attacker won't have the ability to execute Javascript as well, and therefore sites should really mark stored cookies as HTTP only, Secure and even limit them to a single domain. Marking them as HTTP only ensures they cannot be accessed by Javascript, and marking them as secure ensures they must be sent over TLS which would make it very difficult for an attacker to sniff your sensitive data.
