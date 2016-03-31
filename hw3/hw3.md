@@ -5,11 +5,18 @@ Andrew Barba [abarba@ccs.neu.edu](abarba@ccs.neu.edu)
 
 #### Problem 1
 
-###### Describe the fundamental security problems in BPG
+###### Describe the fundamental security problems in BGP
 
-
+The fundamental security problem in the BGP is that it was designed without any internal protections to false data advertisement, replays or any known attack which could modify data. When routes are advertised the protocol does not verify the authenticity of the routes and because there is no centralized source of valid routes, it is very difficult to detect when false routes are advertised. Additionally, as protocol built on TCP/IP, it is vulnerable to any known or new attacks against those protocols.
 
 ###### Compare sBGP and RPKI
+
+There are two main differences between sBGP and RPKI:
+
+1. sBGP requires security and RPKI allows for optional security.
+2. sBGP required a centralized source of signed certificates (proposed in the U.S.) where as RPKI has multiple registries around the globe.
+
+sBGP was never widely deployed due to the centralization in the U.S. and the processing resources required by routers to perform the protocol.
 
 #### Problem 2
 
@@ -37,7 +44,7 @@ CORS (Cross-Origin Resource Sharing) is a protocol that was designed to relax th
 
 ###### Does it have a security vulnerability?
 
-For the sake of argument let's assume the variables `$pwd` and `$uid` came directly from the `POST` body of a request sent by a user in a login form. This code has a huge security flaw in that those variables have not been sanitized in anyway before using them to create a SQL query. Because the query is simply a string, we can craft a string of our own that adds additional commands into the query. For example, let's say I wanted to delete all the users from the database of this site to create a denial of service for it's users, I would send this as the value of my password:
+For the sake of argument let's assume the variables `$pwd` and `$uid` came directly from the `POST` body of a request sent by a user in a login form. This code has a huge security flaw in that those variables have not been sanitized in anyway before using them to create a SQL query. Because the query is simply a string, we can craft a string of our own that adds additional commands into the query. For example, let's say I wanted to delete all the users from the database of this site to create a denial of service by preventing anyone from logging in, I would send this as the value of my password:
 
 ```
 bogus’; DROP TABLE usertable; #
